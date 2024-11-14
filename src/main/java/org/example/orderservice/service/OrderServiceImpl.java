@@ -1,35 +1,47 @@
-package service;
+package org.example.orderservice.service;
 
-import org.example.orderservice.dto.OrderDTO;
+import org.example.orderservice.entity.Order;
+import org.example.orderservice.repository.OrderRepository;
+import org.example.orderservice.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
-public class OrderServiceImpl implements OrderService{
-    @Override
-    public OrderDTO createOrder(OrderDTO orderDTO) {
-        return null;
+public class OrderServiceImpl implements OrderService {
+
+    private final OrderRepository orderRepository;
+
+    @Autowired
+    public OrderServiceImpl(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
     }
 
     @Override
-    public Optional<OrderDTO> getOrderById(Long id) {
-        return Optional.empty();
+    public Order saveOrder(Order order) {
+        orderRepository.save(order);
+        return order;
     }
 
     @Override
-    public List<OrderDTO> getAllOrders() {
-        return null;
+    public Order getOrderById(Long orderId) {
+        return orderRepository.findById(orderId);
     }
 
     @Override
-    public OrderDTO updateOrder(Long id, OrderDTO orderDTO) {
-        return null;
+    public List<Order> getAllOrders() {
+        return orderRepository.findAll();
     }
 
     @Override
-    public void deleteOrder(Long id) {
+    public Order updateOrder(Long orderId, Order order) {
+        orderRepository.update(orderId, order);
+        return order;
+    }
 
+    @Override
+    public boolean deleteOrder(Long orderId) {
+        return orderRepository.delete(orderId) > 0;
     }
 }

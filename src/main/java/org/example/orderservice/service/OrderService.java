@@ -1,18 +1,13 @@
-package service;
+package org.example.orderservice.service;
 
-import org.example.orderservice.dto.OrderDTO;
+import org.example.orderservice.entity.Order;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface OrderService {
-    OrderDTO createOrder(OrderDTO orderDTO);
-
-    Optional<OrderDTO> getOrderById(Long id);
-
-    List<OrderDTO> getAllOrders();
-
-    OrderDTO updateOrder(Long id,OrderDTO orderDTO);
-
-    void deleteOrder(Long id);
+    Order saveOrder(Order order);
+    Order getOrderById(Long orderId);
+    List<Order> getAllOrders();
+    Order updateOrder(Long orderId, Order order);
+    boolean deleteOrder(Long orderId);
 }
