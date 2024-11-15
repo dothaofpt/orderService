@@ -76,7 +76,7 @@ public class OrderRepository {
         return jdbcTemplate.update(sql, params);
     }
 
-   
+
     private static class OrderRowMapper implements RowMapper<Order> {
         @Override
         public Order mapRow(ResultSet rs, int rowNum) throws SQLException {
